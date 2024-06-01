@@ -3,7 +3,7 @@ Installation:
 2. Open the .env file and set the database configuration
 3. Install symfony CLI
 4. Create Database `php bin/console doctrine:database:create`
-5. Run migrations `php bin/console make:migration`
+5. Run migrations `php bin/console doctrine:migrations:migrate`
 6. Run dev server `symfony server:start`
 
 API Methods:
