@@ -1,5 +1,5 @@
 Installation:
-1. Install composer and run `composer update`
+1. Install composer and run `composer update` with all recipes
 2. Open the .env file and set the database configuration
 3. Install symfony CLI
 4. Create Database `php bin/console doctrine:database:create`
