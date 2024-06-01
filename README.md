@@ -4,7 +4,8 @@ Installation:
 3. Install symfony CLI
 4. Create Database `php bin/console doctrine:database:create`
 5. Run migrations `php bin/console doctrine:migrations:migrate`
-6. Run dev server `symfony server:start`
+6. Configure JWT bundle `php bin/console lexik:jwt:generate-keypair` 
+7. Run dev server `symfony server:start`
 
 API Methods:
 1. POST `/api/register` - create new User. Uncomment line 46 to create a user with Admin Role
