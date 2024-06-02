@@ -53,6 +53,12 @@ class UserController extends AbstractController
             return $this->json(['error' => 'Email and password are required'], JsonResponse::HTTP_BAD_REQUEST);
         }
 
+        // Check if the email is already taken
+        $existingUser = $em->getRepository(User::class)->findOneBy(['email' => $email]);
+        if ($existingUser) {
+            return $this->json(['error' => 'Email is already taken'], JsonResponse::HTTP_CONFLICT);
+        }
+
         $user = new User();
         $user->setEmail($email);
         $user->setRoles($roles);
@@ -76,6 +82,14 @@ class UserController extends AbstractController
         $email = $data['email'] ?? null;
         $password = $data['password'] ?? null;
         $roles = $data['roles'] ?? null;
+
+        // Check if the email is already taken by another user
+        if ($email && $email !== $user->getEmail()) {
+            $existingUser = $em->getRepository(User::class)->findOneBy(['email' => $email]);
+            if ($existingUser) {
+                return $this->json(['error' => 'Email is already taken'], JsonResponse::HTTP_CONFLICT);
+            }
+        }
 
         if ($email) {
             $user->setEmail($email);
